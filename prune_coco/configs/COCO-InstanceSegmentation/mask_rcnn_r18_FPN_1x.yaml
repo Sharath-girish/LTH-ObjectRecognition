@@ -1,0 +1,19 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "https://download.pytorch.org/models/resnet18-5c106cde.pth"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 18
+    RES2_OUT_CHANNELS: 64
+# DATASETS:
+#   TRAIN: ("coco_2017_val",)
+#   TEST: ("coco_2017_val",) #("coco_2017_test-dev",)
+SOLVER:
+  BASE_LR: 0.02
+  CHECKPOINT_PERIOD: 7330
+  # IMS_PER_BATCH: 24
+  # STEPS: (40000, 53500)
+  # MAX_ITER: 60000
+  # WARMUP_FACTOR: 5e-4
+  # WARMUP_ITERS: 2000
+OUTPUT_DIR: output/faster_r18_fpn
