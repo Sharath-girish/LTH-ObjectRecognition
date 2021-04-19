@@ -1,6 +1,3 @@
-# LTH for Object Recognition
-This repo is the official implementation for the CVPR submission **#10479**
-
 ## Installation
 Refer to https://github.com/jwyang/faster-rcnn.pytorch for installation instructions.
 
