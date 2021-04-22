@@ -2,6 +2,7 @@ prune_voc/models
 prune_voc/data
 prune_voc/output
 prune_imagenet/models
+prune_imagenet/run_lth.sh
 
 *.png
 *.json

@@ -274,6 +274,7 @@ def main_worker(gpu, ngpus_per_node, args):
             output_dir = base_output_dir
         else:
             output_dir = 'model_'+hashlib.md5(json.dumps(config_dict, sort_keys=True).encode('utf-8')).hexdigest()
+        print("Ouput directory: {}".format(output_dir))
         if os.path.exists(f"models/{output_dir}/checkpoint_{cur_round+1}_{args.epochs}.pth.tar") and \
            os.path.exists(f"models/{base_output_dir}/checkpoint_1_{args.late_reset_epoch}.pth.tar") or \
            cur_round+1<start_round:
@@ -321,11 +322,11 @@ def main_worker(gpu, ngpus_per_node, args):
             train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
         else:
             train_sampler = None
-        train_sampler = torch.utils.data.SubsetRandomSampler(list(range(args.batch_size*12)))
+        # train_sampler = torch.utils.data.SubsetRandomSampler(list(range(args.batch_size*12)))
 
         train_loader = torch.utils.data.DataLoader(
             train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None),
-            num_workers=args.workers, pin_memory=True, sampler=train_sampler)
+            num_workers=args.workers, pin_memory=True)
 
         val_loader = torch.utils.data.DataLoader(
             datasets.ImageFolder(valdir, transforms.Compose([
@@ -342,8 +343,8 @@ def main_worker(gpu, ngpus_per_node, args):
             return
 
         for epoch in range(args.start_epoch, args.epochs):
-            # if args.distributed:
-            #     train_sampler.set_epoch(epoch)
+            if args.distributed:
+                train_sampler.set_epoch(epoch)
 
             if (not args.multiprocessing_distributed or (args.multiprocessing_distributed
                     and args.rank % ngpus_per_node == 0)) and epoch == 0 and cur_round == 0:

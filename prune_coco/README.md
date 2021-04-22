@@ -1,5 +1,4 @@
 # LTH for object recognition
-This repo is the official implementation for the CVPR submission **#10479**
 
 Note: This repo is built upon Facebook's open source detectron2 library. hence we have retained the copyright and the author notices from the original repo. We’ll update these when making the repo public.
 
