@@ -1,6 +1,6 @@
 # LTH for object recognition
 
-Note: This repo is built upon Facebook's open source detectron2 library. hence we have retained the copyright and the author notices from the original repo. We’ll update these when making the repo public.
+Note: This repo is built upon Facebook's open source [Detectron2](https://github.com/facebookresearch/detectron2) library.
 
 # Installation
 For installing the required dependecies to run this repo, please refer to the [detectron_README](detectron_README.md) document provided by detectron2 and follow the steps. 
@@ -14,7 +14,7 @@ The different parts/experiments require switching different options in this repo
 # Running experiments
 ## Direct pruning
 Example way to run: 
-Here we are training a keypoint detector model with Resnet18 backbone and  with 40% sparsity using direct pruning (all layers are pruned). 
+Here we are training a keypoint detector model with Resnet18 backbone and with 40% sparsity using direct pruning (all layers are pruned). 
 Additional configs are found in ```configs/``` directory.
 
 ```
